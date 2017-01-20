@@ -1,0 +1,348 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-5">
+            <img class="img-fluid rounded" data-src="{{ asset('Starterpack.png') }}" alt="100%x280"
+                 style="width: 100%; display: block;"
+                 src="{{ asset('images/Starterpack.png') }}" data-holder-rendered="true">
+
+        </div>
+        <div class="col-lg-7">
+            <h3 class="text-success">Starter Packs</h3>
+            <span>
+                All New players can recieve a Starter Pack, this is a box containing a few items
+                this is to give the player a start on our server where alot of players have large
+                bases and are well established with materials and humanity. To get a Starter Pack just find a place to
+                build your base according to the server rules and ask an Admin on sidechat for the Starter Pack, they
+                will get you one when then can.
+
+            </span>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-lg-6">
+                <h4 class="text-success">Hints</h4>
+                <ul>
+                    <li>
+                        1: Place the Supplies into a Safe as the Kit will despawn on Server Restart OR if you relog into
+                        the game
+                    </li>
+                    <br>
+                    <li>
+                        2: Server has Snap & Vector Building to help you - view tutorials on how to use them
+                    </li>
+                    <br>
+                    <li>
+                        3: Bases are Deleted if unused for more than 10 days - <span class="text-danger"> Maintain your base every 10 days </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-5 offset-lg-1">
+                <h3><span class="text-success"> New Players can get a Starter pack</span></h3>
+                <h4>
+                    <small>
+                        find a place to build and ask an Admin for a starter box.
+                        When you recieve the Starter Kit there are a few things to remember
+                    </small>
+                    <br><br>
+                    <button type="button" class="btn btn-primary text-right" data-toggle="modal" data-target="#exampleModal">
+                        Show starterpack items
+                    </button>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3><span class="text-success">Missions</span></h3>
+            <p>
+                Missions run on our servers - These contain AI and have various tasks to complete, Once you
+                kill the AI you can recover the reward from the weapon boxes, each different mission can
+                have a different reward - The Harder the mission the higher the reward.<br>
+                <br>
+                Loot can range from weapons, Medical supplies, Food, Building supplies, Money and some rare
+                items.<br>
+                <br>
+                When a mission runs its is broadcast on screen in game and marked by a colored circle on
+                your map, The different colors denote the skill levels of the AI and difficulty of that
+                mission.
+            </p>
+            <br>
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="{{ asset('images/missions/green.png') }}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2>Green</h2>
+                    <p>
+                        Treasure Hunt Missions - Green Circle on Map ,No Ai at these,
+                        Treasure may be any where inside the circle
+                    </p>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Low Grade
+                            Loot</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Food</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Medical</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Building</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Ammo</a>
+                    </div>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="{{ asset('images/missions/blue.png') }}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2>Blue</h2>
+                    <p>
+                        Uses our old Mission System (highly modified Ai behaviour),
+                        Ai skill ranges between 2 and 3 moderate.
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">Shot Ai can gain
+                            or loose you 200 Humanity depending if your a Hero or a Bandit.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">Medium Grade
+                            Loot.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">Most Mission
+                            Vehicles will despawn on server restart.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">All Mission
+                            Vehicles can be Sold at traders.</a>
+                    </div>
+                    </p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="{{ asset('images/missions/red.png') }}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2>Red</h2>
+                    <p>
+                        Uses our old Mission System (highly modified Ai behaviour),
+                        Ai skill ranges between 3 and 4 Hard to Hardest on Server.
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Shot Ai can
+                            gain or loose you 200 Humanity depending if your a Hero or a Bandit.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">High End
+                            Loot.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Most Mission
+                            Vehicles will despawn on server restart.</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">All Mission
+                            Vehicles can be Sold at traders.</a>
+                    </div>
+                    </p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3><span class="text-success">Orther AI</span></h3>
+            <p>
+                Static AI fortres & convoys.
+            </p>
+            <br>
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <img class="rounded-circle" src="{{ asset('http://www.suckitupprincess.org/images/skalisty.jpg') }}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2>Skalisty Island Ai Fortress</h2>
+                    <p>
+                        Location - South East on Skalisty Island<br>
+                        Difficulty - Extreme<br>
+                        Ai - 50 plus Air Dropped backup<br>
+                        Defence - M2 Static 50 cal Guns<br>
+                        Loot - Extreme High End<br>
+                    </p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-6 text-center">
+                    <img class="rounded-circle"
+                         src="{{ asset('http://www.un.org/undss/sites/www.un.org.undss/files/u7/UN_logo.png') }}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2>UN Convoys</h2>
+                    <p>
+                        Location - Any where on map
+                        Difficulty - Moderate
+                        Ai - Un Vehicle Convoys
+                        Defence - Ai Soldiers
+                    </p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3><span class="text-success">Deployables</span></h3>
+            <p>
+                If you have the proper items in your gear you have the ability to DEPLOY (craft) certain vehilces. To
+                deploy simply open your gear, right click on your Toolbox and select the vehicle you want to build. To
+                be able to do this you need these items -
+            </p>
+            <br>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <img class="img-thumbnail" src="{{ asset('https://img.tradeindia.com/fp/1/950/190.jpg') }}"
+                         alt="Bicycle" width="140" height="140">
+                    <h2>Bicycle</h2>
+                    <p>
+                        Required items:<br>
+                        - Toolbox
+                    </p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 text-center">
+                    <img class="img-thumbnail"
+                         src="{{ asset('http://img.auctiva.com/imgdata/4/7/8/9/5/1/webimg/602437036_o.jpg') }}"
+                         alt="Motor cycle" width="140" height="140">
+                    <h2>Motor cycle</h2>
+                    <p>
+                        Required items:<br>
+                        - Toolbox<br>
+                        - Srap metal<br>
+                        - Engine parts<br>
+                        - Wheel
+                    </p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-sm-4 text-center">
+                    <img class="img-thumbnail"
+                         src="{{ asset('http://img-1.newatlas.com/4628_220905120549.jpg?auto=format%2Ccompress&ch=Width%2CDPR&crop=entropy&fit=crop&h=347&q=60&w=616&s=4a74f06922f8ddfff5eae946563f29ee') }}"
+                         alt="Mozzie" style="height: 140px;">
+                    <h2>Mozzie</h2>
+                    <p>
+                        Required items:<br>
+                        - Toolbox<br>
+                        - Srap metal<br>
+                        - Engine parts<br>
+                        - H-Rotor
+                    </p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3><span class="text-success">Other interactions</span></h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <img class="img-thumbnail" src="{{ asset('http://i.imgur.com/1jA23OO.png') }}"
+                         alt="Bicycle" style="height:220px;">
+                    <h2>View Distance</h2>
+                    <p>
+                        Players can adjust their own View Distance in game.
+                        The player needs either Binoculars, Rangefinders or night vision goggles in their gear to be able to do so.
+
+                        Open Gear and Right click on either one of those, then select
+                        the Distance that you want to view to. Remember the higher you set the View Distance
+                        the lower the players FPS will be.
+                    </p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-6 text-center">
+                    <img class="img-thumbnail"
+                         src="{{ asset('images/locate.png') }}"
+                         alt="Motor cycle" style="height:220px;">
+                    <h2>Locate Vehicles</h2>
+                    <p>
+                        <b>Required items: Toolbelt map</b><br>
+                        By pressing "Locate Vehicles" located at right-clicking the toolbelt item map.<br>
+                        The game searches the your inventory for any keys in your toolbelt slots. ( This progress can takeup a few seconds ).
+                        <br>
+                        When the process is complete, it shows the Vehicle(s) that belongs to the key(s) on the map with an orange dot.
+                    </p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Starterpack items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Object</th>
+                            <th>quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Plotpole</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Wooden floor/ceiling</td>
+                            <td>4 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Wooden Walks</td>
+                            <td>5 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Garage Door with combination lock</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Work Bench</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Safe</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Crowbar</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Etool</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>Toolbox</td>
+                            <td>1 x</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>Briefcase</td>
+                            <td>1 x</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}

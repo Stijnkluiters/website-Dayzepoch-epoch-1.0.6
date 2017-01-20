@@ -1,0 +1,33 @@
+{% extends 'back_end/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+
+        {{ form_start(form,{ 'attr' :  {"class":"form-signin"} }) }}
+
+        <h2>Create a news blog</h2>
+        <div class="form-group">
+            {{ form_widget(form.title, { 'attr': {'class': 'form-control','placeholder':'Title'} })  }}
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.content, { 'attr': {'class': 'form-control','placeholder':'Description of news'} })  }}
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(form.image, { 'attr': {'class': 'form-control','placeholder':'Description of news'} })  }}
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+
+        <div class="form-group">
+            {{ form_row(form.save,{ "attr":{'class':'btn btn-default col-lg-12'} }) }}
+        </div>
+
+        {{ form_row(form._token) }}
+        {{ form_end(form,{'render_rest': false}) }}
+
+    </div>
+
+{% endblock %}
