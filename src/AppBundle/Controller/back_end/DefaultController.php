@@ -53,8 +53,6 @@ class DefaultController extends Controller
             $newsobject->setContent($task->getContent());
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($cortina);
-            $em->flush();
 
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!
@@ -62,7 +60,7 @@ class DefaultController extends Controller
             // $em->persist($task);
             // $em->flush();
 
-            return $this->redirectToRoute('task_success');
+            return $this->redirectToRoute('bnews');
         }
 
         return $this->render('back_end/news.html.twig', [

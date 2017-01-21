@@ -6,10 +6,11 @@
  * Time: 08:05
  */
 
-namespace AppBundle\Handler;
+namespace AppBundle;
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File
 {
