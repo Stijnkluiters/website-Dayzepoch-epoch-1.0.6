@@ -32,8 +32,6 @@ class DefaultController extends Controller
     {
         // First get all news rows
         // create a new entity, gather all rows. return to the page view.
-        $news = $this->getDoctrine()->getRepository('AppBundle:News')->findAll();
-
         $news = new News();
 
         $form = $this->createForm(NewsType::class,$news);
@@ -48,17 +46,12 @@ class DefaultController extends Controller
 
             /** @var News $task */
             $task = $form->getData();
-            $newsobject = new News();
-            $newsobject->setTitle($task->getTitle());
-            $newsobject->setContent($task->getContent());
+            $news->setTitle($task->getTitle());
+            $news->setContent($task->getContent());
 
             $em = $this->getDoctrine()->getManager();
-
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($task);
-            // $em->flush();
+            $em->persist($news);
+            $em->flush();
 
             return $this->redirectToRoute('bnews');
         }
