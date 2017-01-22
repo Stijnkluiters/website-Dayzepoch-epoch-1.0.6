@@ -9,7 +9,6 @@ Currently contains
 -**Homepage**
 -**SQF to SQL importer**
 
-In the back_end default controller go to the protected function string.
 
 Add any products there. 
 
@@ -24,9 +23,11 @@ Should also not be included, bug in code.. weird bug!
 How to import a single product?
 
 *Example:*
+paste a string something like this:
 `
 	class FoodDogCooked {type = "trade_items";buy[] ={1,"ItemGoldBar"};sell[] ={1,"ItemGoldBar"};};`
 
+In the back_end default controller go to the protected function string.
 
 progress stopped duo owner of IDP(81.19.216.113:2300) doesn't want to pay money for a webhoster... Feel free to complete the rest of the code.
 
