@@ -2,11 +2,12 @@ Written in Symfony 3.2
 
 **Dayz epoch website 1.0.6**
 
-Currently contains:
-**Rules page**
-**Traderitem list**
-**Homepage**
-**SQF to SQL importer**
+Currently contains
+
+-**Rules page**
+-**Traderitem list**
+-**Homepage**
+-**SQF to SQL importer**
 
 In the back_end default controller go to the protected function string.
 
