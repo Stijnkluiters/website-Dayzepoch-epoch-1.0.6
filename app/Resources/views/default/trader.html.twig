@@ -2,7 +2,33 @@
 
 {% block body %}
     <div class="container">
-    {% for product in products %}
-    {%  endfor %}
+        <table id="myTable" class="display" >
+            <thead>
+                    <th>Name</th>
+                    <th></th>
+                    <th>Category</th>
+                    <th>Buy price</th>
+                    <th>Sell Price</th>
+            </thead>
+            <tfoot>
+                    <th>Name</th>
+                    <th></th>
+                    <th>Category</th>
+                    <th>Buy price</th>
+                    <th>Sell Price</th>
+            </tfoot>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}<td>
+                    <td>{{ product.category }}</td>
+                    {% if product.buyname == 'ItemGoldBar' %}
+                    <td><img width="20" height="20" class="img-rounded" src="https://hydra-media.cursecdn.com/epochmod.gamepedia.com/6/69/ItemGoldBar.png?version=10e1b5b9480a86867739114f2e4c6fcf"> x{{ product.buyqty }}</td>
+                    {% endif %}
+                    <td>{{ product.sellname }}x{{ product.sellqty }}</td>
+                </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

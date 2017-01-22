@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://v4-alpha.getbootstrap.com/examples/carousel/carousel.css">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
@@ -54,10 +55,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
 <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script>
     $('#starterpackcontent').on('click', function () {
-        $('#myInput').focus()
-    })
+        $('#myInput').focus();
+    });
+    $('#myTable').DataTable();
+
 </script>
 {% block javascripts %}
 {% endblock %}
