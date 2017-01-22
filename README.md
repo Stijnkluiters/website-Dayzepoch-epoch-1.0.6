@@ -70,5 +70,7 @@ Enjoy!
 
 creating schema's by:
  php bin/console doctrine:schema:update --force
+Create getters and setters in model:
+ php bin/console doctrine:generate:entities AppBundle/Entity/{Product}
  start localhost by:
  php bin/console server:run"# laststandepoch" 

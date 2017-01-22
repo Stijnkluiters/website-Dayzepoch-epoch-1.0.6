@@ -3,8 +3,10 @@
 namespace AppBundle\Entity;
 
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * News
@@ -14,6 +16,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class News
 {
+    /**
+     * News constructor.
+     */
+    public function __construct()
+    {
+        $this->created_at = new DateTime();
+        $this->updated_at = new DateTime();
+    }
     /**
      * @var int
      *
@@ -33,6 +43,11 @@ class News
     private $content;
     /**
      * @ORM\Column(type="text")
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"image/jpeg", "image/pjpeg"},
+     *     mimeTypesMessage = "Please upload a valid JPEG/JPG"
+     * )
      */
     private $image;
 
@@ -151,5 +166,29 @@ class News
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return News
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

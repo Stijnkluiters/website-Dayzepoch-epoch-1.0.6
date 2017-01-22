@@ -1,0 +1,26 @@
+{% extends 'back_end/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+
+        {{ form_start(form,{ 'attr' :  {"class":"form-signin"} }) }}
+
+        <h2>All the products for the server.</h2>
+        <table id="myTable">
+            <thead>
+
+            </thead>
+            <tfoot>
+
+            </tfoot>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        {{ form_row(form._token) }}
+        {{ form_end(form,{'render_rest': false}) }}
+
+    </div>
+
+{% endblock %}

@@ -1,24 +1,24 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: stijn
+ * Date: 21-1-2017
+ * Time: 21:44
+ */
 
 namespace AppBundle\Entity;
 
-
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * News
+ * Product
  *
- * @ORM\Table(name="news")
+ * @ORM\Table(name="products")
  * @ORM\Entity()
  */
-class News
+class Product
 {
-    /**
-     * News constructor.
-     */
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -33,25 +33,33 @@ class News
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
-    private $title;
-
+    private $name;
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private $description;
     /**
-     * @ORM\Column(type="text")
-     * @Assert\File(
-     *     maxSize = "1024k",
-     *     mimeTypes = {"image/jpeg", "image/pjpeg"},
-     *     mimeTypesMessage = "Please upload a valid JPEG/JPG"
-     * )
+     * @ORM\Column(type="string")
      */
-    private $image;
-
-
+    private $buyname;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $buyqty;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $sellname;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $sellqty;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $category;
     /**
      * @ORM\Column(type="datetime")
      */
@@ -61,63 +69,78 @@ class News
      */
     private $updated_at;
 
-
+  
     /**
-     * Get id
+     * Set name
      *
-     * @return integer
+     * @param string $name
+     *
+     * @return Product
      */
-    public function getId()
+    public function setName($name)
     {
-        return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return News
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * Set content
+     * Set description
      *
-     * @param string $content
+     * @param string $description
      *
-     * @return News
+     * @return Product
      */
-    public function setContent($content)
+    public function setDescription($description)
     {
-        $this->content = $content;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get content
+     * Get description
      *
      * @return string
      */
-    public function getContent()
+    public function getDescription()
     {
-        return $this->content;
+        return $this->description;
+    }
+
+ 
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**
@@ -125,7 +148,7 @@ class News
      *
      * @param \DateTime $createdAt
      *
-     * @return News
+     * @return Product
      */
     public function setCreatedAt($createdAt)
     {
@@ -149,7 +172,7 @@ class News
      *
      * @param \DateTime $updatedAt
      *
-     * @return News
+     * @return Product
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -166,29 +189,5 @@ class News
     public function getUpdatedAt()
     {
         return $this->updated_at;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return News
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }

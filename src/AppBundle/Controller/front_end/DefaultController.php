@@ -3,6 +3,9 @@
 namespace AppBundle\Controller\front_end;
 
 use AppBundle\Entity\News;
+use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\Common\Cache\FilesystemCache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,6 +54,26 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('default/news.html.twig', [
             'allnews'  => $news
+        ]);
+    }
+    /**
+     * @Route("/traderitems", name="trader")
+     */
+    public function traderAction(Request $request){
+
+
+        $directory = $this->container->getParameter('Cache');
+        $cache = new FilesystemCache($directory);
+        $products = $cache->fetch('products');
+        if($products === false) {
+            $products = $this->getDoctrine()
+                ->getRepository('AppBundle:Product')
+                ->findAll();
+            $cache->save('products',$products);
+        }
+        // replace this example code with whatever you need
+        return $this->render('default/trader.html.twig', [
+            'products'  => $products
         ]);
     }
 }

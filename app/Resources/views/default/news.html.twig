@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container marketing">
+    <div class="container">
         <!-- Three columns of text below the carousel -->
         <div class="row">
             {% for news in allnews %}
-                <div class="col-lg-4">
-                    <img class="rounded-circle" src="{{ news.image }}" alt="Tutorial" width="140" height="140">
+                <div class="col-lg-4 ">
+                    <img class="img-fluid" src="{{ asset('uploads/images/' ~ news.image)  }}" alt="Tutorial" width="140" height="140">
                     <h2>{{ news.title }}</h2>
                     <p>{{ news.content }}</p>
                 </div><!-- /.col-lg-4 -->

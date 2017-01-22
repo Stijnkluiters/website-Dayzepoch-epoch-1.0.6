@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     images_directory : '%kernel.root_dir%/../web/uploads/images'
+    Cache: "%kernel.root_dir%/../var/cache/dev/php"
 
 framework:
     #esi:             ~
@@ -39,6 +40,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+      images_directory : '%kernel.root_dir%/../web/uploads/images'
 
 # Doctrine Configuration
 doctrine:
