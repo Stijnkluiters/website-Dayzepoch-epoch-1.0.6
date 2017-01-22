@@ -22,10 +22,32 @@
                 <tr>
                     <td>{{ product.name }}<td>
                     <td>{{ product.category }}</td>
-                    {% if product.buyname == 'ItemGoldBar' %}
-                    <td><img width="20" height="20" class="img-rounded" src="https://hydra-media.cursecdn.com/epochmod.gamepedia.com/6/69/ItemGoldBar.png?version=10e1b5b9480a86867739114f2e4c6fcf"> x{{ product.buyqty }}</td>
+                    {% if product.buyqty == -1  %}
+                        <td class="bg-warning">Not sellable</td>
+                        {% elseif product.buyname == 'ItemGoldBar10oz' %}
+                        <td class="bg-success">Gold 10-oz x {{ product.buyqty }}</td>
+                        {% elseif product.buyname == 'ItemBriefcase100oz' %}
+                        <td class="bg-success">Gold briefcase x{{ product.buyqty }}</td>
+                        {% elseif product.buyname == 'ItemGoldBar' %}
+                        <td class="bg-success">Gold x{{ product.buyqty }}</td>
+                        {% elseif product.buyname == 'ItemSilverBar' %}
+                        <td class="bg-success">Silver x{{ product.buyqty }}</td>
+                        {% elseif product.buyname == 'ItemSilverBar10oz' %}
+                        <td class="bg-success">Silver 10-oz x{{ product.buyqty }}</td>
                     {% endif %}
-                    <td>{{ product.sellname }}x{{ product.sellqty }}</td>
+                        {% if product.sellqty == -1  %}
+                            <td class="bg-warning">Not sellable</td>
+                        {% elseif product.sellname == 'ItemGoldBar10oz' %}
+                            <td class="bg-success">Gold 10-oz x {{ product.sellqty }}</td>
+                        {% elseif product.sellname == 'ItemBriefcase100oz' %}
+                            <td class="bg-success">Gold briefcase x{{ product.sellqty }}</td>
+                        {% elseif product.sellname == 'ItemGoldBar' %}
+                            <td class="bg-success">Gold x{{ product.sellqty }}</td>
+                        {% elseif product.sellname == 'ItemSilverBar' %}
+                            <td class="bg-success">Silver x{{ product.sellqty }}</td>
+                        {% elseif product.sellname == 'ItemSilverBar10oz' %}
+                            <td class="bg-success">Silver 10-oz x{{ product.sellqty }}</td>
+                    {% endif %}
                 </tr>
             {%  endfor %}
             </tbody>

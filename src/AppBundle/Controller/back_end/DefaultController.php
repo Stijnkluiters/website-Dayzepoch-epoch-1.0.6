@@ -18,23 +18,301 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class DefaultController extends Controller
 {
+    protected function importer()
+    {
+        $string = $this->string();
+        $array = explode('class', trim($string));
+        $arraymapped = array_map('trim', $array);
+        foreach ($arraymapped as $value) {
+            $haystack = substr($value, 0, strpos($value, ' '));
+
+
+            if (strpos($value, $haystack) !== false) {
+                $values[] = explode(';', str_replace($haystack, '', $value));
+                foreach ($values as $search) {
+
+                    foreach ($search as $value2) {
+                        sleep(0.1);
+                        if (strpos($value2, 'buy') !== false) {
+                            if (!isset($buy)) {
+
+                                if (strpos($value2, 'ItemGoldBar10oz') !== false) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemGoldBar10oz'] = intval($int);
+                                    }
+                                } elseif
+                                (strpos($value2, 'ItemSilverBar10oz') !== false
+                                ) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemSilverBar10oz'] = intval($int);
+                                    }
+                                } elseif
+                                (strpos($value2, 'ItemBriefcase100oz') !== false
+                                ) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemBriefcase100oz'] = intval($int);
+                                    }
+                                } elseif
+                                (strpos($value2, 'ItemSilverBar') !== false
+                                ) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemSilverBar'] = intval($int);
+                                    }
+                                } elseif
+                                (strpos($value2, 'ItemGoldBar') !== false
+                                ) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemGoldBar'] = intval($int);
+                                    }
+                                }
+                            }
+                        }
+                        if (strpos($value2, 'sell') !== false) {
+                            if (!isset($sell)) {
+                                if (strpos($value2, 'ItemGoldBar10oz') !== false) {
+
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemGoldBar10oz'] = intval($int);
+                                    }
+                                } elseif (strpos($value2, 'ItemSilverBar10oz') !== false) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemSilverBar10oz'] = intval($int);
+                                    }
+                                } elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemBriefcase100oz'] = intval($int);
+                                    }
+                                } elseif (strpos($value2, 'ItemSilverBar') !== false) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemSilverBar'] = intval($int);
+                                    }
+                                } elseif (strpos($value2, 'ItemGoldBar') !== false) {
+                                    $qty = substr($value2, 6, strpos($value2, '={'));
+                                    if ($qty == '') {
+                                        dump($value2);
+                                        exit;
+                                    }
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemGoldBar'] = intval($int);
+                                    }
+                                }
+                            }
+                        }
+                        if (strpos($value2, 'type') !== false) {
+
+                            if (strpos($value2, 'trade_any_vehicle') !== false) {
+                                $type = 'trade_any_vehicle';
+                            }
+                            if (strpos($value2, 'trade_any_bicycle') !== false) {
+                                $type = 'trade_any_bicycle';
+                            }
+                            if (strpos($value2, 'trade_weapons') !== false) {
+                                $type = 'trade_weapons';
+                            }
+                            if (strpos($value2, 'trade_items') !== false) {
+                                $type = 'trade_items';
+                            }
+                            if (strpos($value2, 'trade_any_boat') !== false) {
+                                $type = 'trade_any_boat';
+                            }
+                            if (strpos($value2, 'trade_backpacks') !== false) {
+                                $type = 'trade_backpacks';
+                            }
+                            if (strpos($haystack, 'Rnd') !== false) {
+                                $type = 'trade_ammo';
+                            }
+                            if (strpos($haystack, 'Food') !== false) {
+                                $type = 'trade_food';
+                            }
+                            if (strpos($haystack, 'Soda') !== false) {
+                                $type = 'trade_drink';
+                            }
+
+                        }
+                    }
+                    $products[$haystack] = [
+                        'type' => $type,
+                        'buy' => $buy,
+                        'sell' => $sell,
+                    ];
+                    if (isset($sell)) {
+                        $sell = null;
+                    }
+                    if (isset($buy)) {
+                        $buy = null;
+                    }
+                    if (isset($type)) {
+                        $type = null;
+                    }
+                }
+
+
+            }
+        }
+
+        foreach ($products as $productkey => $product) {
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
+            $dbproduct = $repository->findBy(['name' => $productkey]);
+            foreach ($product as $key => $val) {
+                if (!is_array($product['buy'])) {
+                    dump($productkey);
+                }
+            }
+            if (count($dbproduct) == 0) {
+                $productobject = new Product();
+                $productobject->setName($productkey);
+                $productobject->setCategory($product['type']);
+
+                $productobject->setBuyname($key = key($product['buy']));
+                $productobject->setBuyqty($product['buy'][$key]);
+
+                $productobject->setSellname($key = key($product['sell']));
+                $productobject->setSellqty($product['sell'][$key]);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($productobject);
+                $em->flush();
+            }
+
+        }
+        echo "<pre>";
+        var_dump($products);
+        echo "</pre>";
+        exit;
+    }
+
     /**
      * @Route("/admin/index", name="bindex")
      */
-    public function index(Request $request)
+    public
+    function index(Request $request)
     {
 
         // replace this example code with whatever you need
         return $this->render('back_end/index.html.twig');
     }
+
     /**
      * @Route("/admin/news", name="bnews")
      */
-    public function newsIndex(Request $request)
+    public
+    function newsIndex(Request $request)
     {
+
+
+
+        $news = new News();
+
+        $form = $this->createForm(NewsType::class, $news);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $file */
+
+
+            /** @var News $task */
+            $task = $form->getData();
+            $news->setTitle($task->getTitle());
+            $news->setContent($task->getContent());
+
+            $file = $news->getImage();
+            $fileName = $this->get('app.images_uploader')->upload($file);
+            $news->setImage($fileName);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($news);
+            $em->flush();
+
+            return $this->redirectToRoute('bnews');
+        }
+
+        return $this->render('back_end/news.html.twig', [
+            'news' => $news,
+            'form' => $form->createView()
+        ]);
+    }
+
+    public
+    function newsDelete(Request $request)
+    {
+
+        $params = $request->request->all();
+
+
+    }
+
+    /**
+     * @Route("/rules", name="rules")
+     */
+    public
+    function rulesAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/rules.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
+        ]);
+    }
+    public function string(){
         // First get all news rows
         // create a new entity, gather all rows. return to the page view.
-        $string ="
+        return "
 
 	class G36C_DZ {type = \"trade_weapons\";	buy[] ={4,\"ItemGoldBar\"};sell[] ={2,\"ItemGoldBar\"};};
 	class G36C_camo {type = \"trade_weapons\";buy[] ={6,\"ItemGoldBar\"};sell[] ={3,\"ItemGoldBar\"};};
@@ -1701,265 +1979,5 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] ={2,\"ItemGoldBar\"};sel
 
 
 ";
-        $array = explode('class',trim($string));
-        $arraymapped = array_map('trim',$array);
-        foreach ($arraymapped as $value) {
-            $haystack = substr($value, 0, strpos($value, ' '));
-
-
-
-            if (strpos($value, $haystack) !== false) {
-                $values[] = explode(';',str_replace($haystack,'',$value));
-                foreach($values as $search) {
-
-                    foreach ($search as $value2) {
-                        sleep(0.1);
-
-                        // buy
-                        if (strpos($value2, 'buy') !== false) {
-                            if(!isset($buy)) {
-
-                                if (strpos($value2, 'ItemGoldBar10oz') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                     if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemGoldBar10oz'] = intval($int);
-                                    }
-                                }  elseif (strpos($value2, 'ItemSilverBar10oz') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemSilverBar10oz'] = intval($int);
-                                    }
-                                } elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                    if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemBriefcase100oz'] = intval($int);
-                                    }
-                                } elseif (strpos($value2, 'ItemSilverBar') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemSilverBar'] = intval($int);
-                                    }
-                                }  elseif (strpos($value2, 'ItemGoldBar') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemGoldBar'] = intval($int);
-                                    }
-                                }
-                            }
-                        }
-                        //sell
-
-                        if (strpos($value2, 'sell') !== false) {
-                            if(!isset($sell)) {
-                                if (strpos($value2, 'ItemGoldBar10oz') !== false) {
-
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                    if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $sell['ItemGoldBar10oz'] = intval($int);
-                                    }
-                                }  elseif (strpos($value2, 'ItemSilverBar10oz') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                    if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $sell['ItemSilverBar10oz'] = intval($int);
-                                    }
-                                }   elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $sell['ItemBriefcase100oz'] = intval($int);
-                                    }
-                                }  elseif (strpos($value2, 'ItemSilverBar') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $sell['ItemSilverBar'] = intval($int);
-                                    }
-                                } elseif (strpos($value2, 'ItemGoldBar') !== false) {
-                                    $qty = substr($value2, 6, strpos($value2, '={'));
-                                                                        if($qty == '') {
-                                        dump($value2);
-                                        exit;
-                                    }
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $sell['ItemGoldBar'] = intval($int);
-                                    }
-                                }
-                            }
-                        }
-                        //type
-                        if (strpos($value2, 'type') !== false) {
-
-                            if (strpos($value2, 'trade_any_vehicle') !== false) {
-                                $type = 'trade_any_vehicle';
-                            }
-                            if (strpos($value2, 'trade_any_bicycle') !== false) {
-                                $type = 'trade_any_bicycle';
-                            }
-                            if (strpos($value2, 'trade_weapons') !== false) {
-                                $type = 'trade_weapons';
-                            }
-                            if (strpos($value2, 'trade_items') !== false) {
-                                $type = 'trade_items';
-                            }
-                            if (strpos($value2, 'trade_any_boat') !== false) {
-                                $type = 'trade_any_boat';
-                            }
-                            if (strpos($value2, 'trade_backpacks') !== false) {
-                                $type = 'trade_backpacks';
-                            }
-                            if (strpos($haystack, 'Rnd') !== false) {
-                                $type = 'trade_ammo';
-                            }
-                            if (strpos($haystack, 'Food') !== false) {
-                                $type = 'trade_food';
-                            }
-                            if (strpos($haystack, 'Soda') !== false) {
-                                $type = 'trade_drink';
-                            }
-
-                        }
-                    }
-                    $products[$haystack] = [
-                        'type' => $type,
-                        'buy'  => $buy,
-                        'sell' => $sell,
-                    ];
-                    if(isset($sell)) {
-                        $sell = null;
-                    }
-                    if (isset($buy)) {
-                        $buy = null;
-                    }
-                    if (isset($type)) {
-                        $type = null;
-                    }
-                }
-
-
-            }
-        }
-
-        foreach($products as $productkey => $product) {
-            $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
-            $dbproduct = $repository->findBy(['name' => $productkey]);
-            foreach($product as $key => $val) {
-                if(!is_array($product['buy'])) {
-                    dump($productkey );
-                }
-            }
-            if(count($dbproduct) == 0) {
-                $productobject = new Product();
-                $productobject->setName($productkey);
-                $productobject->setCategory($product['type']);
-
-                $productobject->setBuyname($key = key($product['buy']));
-                $productobject->setBuyqty($product['buy'][$key]);
-
-                $productobject->setSellname($key = key($product['sell']));
-                $productobject->setSellqty($product['sell'][$key]);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($productobject);
-                $em->flush();
-            }
-
-        }
-        echo "<pre>";
-        var_dump($products);
-        echo "</pre>";
-        exit;
-
-        $news = new News();
-
-        $form = $this->createForm(NewsType::class,$news);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            /** @var UploadedFile $file */
-
-
-            /** @var News $task */
-            $task = $form->getData();
-            $news->setTitle($task->getTitle());
-            $news->setContent($task->getContent());
-
-            $file = $news->getImage();
-            $fileName = $this->get('app.images_uploader')->upload($file);
-            $news->setImage($fileName);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($news);
-            $em->flush();
-
-            return $this->redirectToRoute('bnews');
-        }
-
-        return $this->render('back_end/news.html.twig', [
-            'news' => $news,
-            'form'  => $form->createView()
-        ]);
-    }
-    public function newsDelete(Request $request) {
-
-        $params = $request->request->all();
-
-
-
-    }
-
-    /**
-     * @Route("/rules", name="rules")
-     */
-    public function rulesAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/rules.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
     }
 }
