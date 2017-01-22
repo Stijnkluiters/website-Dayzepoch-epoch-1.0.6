@@ -6,6 +6,7 @@ use AppBundle\Entity\Product;
 use AppBundle\Form\NewsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -758,7 +759,6 @@ class hilux1_civil_2_covered_DZE {type = \"trade_any_vehicle\";buy[] = {8,\"Item
 		buy[] = {2,\"ItemSilverBar\"};
 		sell[] = {1,\"ItemSilverBar\"};
 	};
-	// bloodBagONEG is automatically swapped with ItemBloodbag if dayz_classicBloodBagSystem = true; Other typed bags and bloodTester are ignored.
 	class bloodBagONEG {
 		type = \"trade_items\";
 		buy[] = {4,\"ItemSilverBar\"};
@@ -860,7 +860,7 @@ class hilux1_civil_2_covered_DZE {type = \"trade_any_vehicle\";buy[] = {8,\"Item
 		sell[] = {1,\"ItemSilverBar\"};
 	};
 
-class ItemKiloHemp {type = \"trade_items\";buy[] ={3,\"ItemGoldBar10oz\"};sell[] ={3,\"ItemGoldBar10oz\"};
+    class ItemKiloHemp {type = \"trade_items\";buy[] ={3,\"ItemGoldBar10oz\"};sell[] ={3,\"ItemGoldBar10oz\"};
 
 	class ItemWaterbottleUnfilled {
 		type = \"trade_items\";
@@ -1070,7 +1070,6 @@ class ItemKiloHemp {type = \"trade_items\";buy[] ={3,\"ItemGoldBar10oz\"};sell[]
 		buy[] = {2,\"ItemGoldBar\"};
 		sell[] = {1,\"ItemGoldBar\"};
 	};
-	//new Epoch 1.06
 	class Skin_Doctor_DZ {
 		type = \"trade_items\";
 		buy[] = {2,\"ItemGoldBar\"};
@@ -1167,7 +1166,6 @@ class equip_rope {type = \"trade_items\";buy[] = {4,\"ItemSilverBar\"};sell[] = 
 class equip_hose {type = \"trade_items\";buy[] = {6,\"ItemSilverBar\"};sell[] = {3,\"ItemSilverBar\"};};
 class equip_lever {type = \"trade_items\";buy[] = {6,\"ItemSilverBar\"};sell[] = {3,\"ItemSilverBar\"};};
 class equip_nails {type = \"trade_items\";buy[] = {2,\"ItemSilverBar\"};sell[] = {1,\"ItemSilverBar\"};};
-/* class equip_scrapelectronics {type = \"trade_items\";buy[] = {4,\"ItemGoldBar\"};sell[] = {2,\"ItemGoldBar\"};}; */
 class equip_metal_sheet {type = \"trade_items\";buy[] = {2,\"ItemSilverBar10oz\"};sell[] = {1,\"ItemSilverBar10oz\"};};
 class equip_1inch_metal_pipe {type = \"trade_items\";buy[] = {6,\"ItemSilverBar\"};sell[] = {3,\"ItemSilverBar\"};};
 class equip_2inch_metal_pipe {type = \"trade_items\";buy[] = {8,\"ItemSilverBar\"};sell[] = {4,\"ItemSilverBar\"};};
@@ -1427,12 +1425,7 @@ class Skin_Ins_Commander_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};
 class Skin_Ins_Soldier_Crew_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};sell[] = {1,\"ItemGoldBar\"};};
 class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};sell[] = {1,\"ItemGoldBar\"};};
 
-class ItemBriefcase100oz {type = \"trade_items\";	buy[] ={1,\"ItemBriefcase100oz\"};sell[] ={1,\"ItemBriefcase100oz\"};};
-class ItemGoldBar10oz {type = \"trade_items\";buy[] ={1,\"ItemGoldBar10oz\"};	sell[] ={1,\"ItemGoldBar10oz\"};	};
-class ItemGoldBar {type = \"trade_items\";buy[] ={1,\"ItemGoldBar\"};sell[] ={1,\"ItemGoldBar\"};};
 class PartOreGold {type = \"trade_items\";buy[] ={1,\"ItemGoldBar\"};sell[] ={1,\"ItemGoldBar\"};};
-class ItemSilverBar10oz {type = \"trade_items\";buy[] ={1,\"ItemSilverBar10oz\"};sell[] ={1,\"ItemSilverBar10oz\"};};
-class ItemSilverBar {type = \"trade_items\";buy[] ={1,\"ItemSilverBar\"};sell[] ={1,\"ItemSilverBar\"};};
 class PartOreSilver {type = \"trade_items\";buy[] ={1,\"ItemSilverBar\"};sell[] ={1,\"ItemSilverBar\"};};
 class ItemRuby {type=\"trade_items\"; buy[] = {1,\"ItemBriefcase100oz\"}; sell[] = {1,\"ItemBriefcase100oz\"}; }; 
 class ItemCitrine {type=\"trade_items\"; buy[] = {2,\"ItemBriefcase100oz\"}; sell[] = {2,\"ItemBriefcase100oz\"}; }; 
@@ -1634,7 +1627,6 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
 		buy[] = {4,\"ItemGoldBar\"};
 		sell[] = {2,\"ItemGoldBar\"};
 	};
-};
 
 	class bulk_17Rnd_9x19_glock17 {
 		type = \"trade_items\";
@@ -1707,7 +1699,6 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
 		sell[] = {1,\"ItemGoldBar\"};
 	};
 
-};
 
 ";
         $array = explode('class',trim($string));
@@ -1733,17 +1724,22 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
                                     if (strpos($int, 'oz') === false) {
                                         $buy['ItemGoldBar10oz'] = $int;
                                     }
+                                }  elseif (strpos($value2, 'ItemSilverBar10oz') !== false) {
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemSilverBar10oz'] = $int;
+                                    }
+                                } elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $buy['ItemBriefcase100oz'] = $int;
+                                    }
                                 } elseif (strpos($value2, 'ItemSilverBar') !== false) {
                                     $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
                                     if (strpos($int, 'oz') === false) {
                                         $buy['ItemSilverBar'] = $int;
                                     }
-                                }  elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
-                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
-                                    if (strpos($int, 'oz') === false) {
-                                        $buy['ItemBriefcase100oz'] = $int;
-                                    }
-                                } elseif (strpos($value2, 'ItemGoldBar') !== false) {
+                                }  elseif (strpos($value2, 'ItemGoldBar') !== false) {
                                     $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
                                     if (strpos($int, 'oz') === false) {
                                         $buy['ItemGoldBar'] = $int;
@@ -1762,15 +1758,20 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
                                     if (strpos($int, 'oz') === false) {
                                         $sell['ItemGoldBar10oz'] = $int;
                                     }
-                                } elseif (strpos($value2, 'ItemSilverBar') !== false) {
+                                }  elseif (strpos($value2, 'ItemSilverBar10oz') !== false) {
                                     $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
                                     if (strpos($int, 'oz') === false) {
-                                        $sell['ItemSilverBar'] = $int;
+                                        $sell['ItemSilverBar10oz'] = $int;
                                     }
-                                }  elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
+                                }   elseif (strpos($value2, 'ItemBriefcase100oz') !== false) {
                                     $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
                                     if (strpos($int, 'oz') === false) {
                                         $sell['ItemBriefcase100oz'] = $int;
+                                    }
+                                }  elseif (strpos($value2, 'ItemSilverBar') !== false) {
+                                    $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
+                                    if (strpos($int, 'oz') === false) {
+                                        $sell['ItemSilverBar'] = $int;
                                     }
                                 } elseif (strpos($value2, 'ItemGoldBar') !== false) {
                                     $int = filter_var($qty, FILTER_SANITIZE_NUMBER_INT);
@@ -1786,11 +1787,20 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
                             if (strpos($value2, 'trade_any_vehicle') !== false) {
                                 $type = 'trade_any_vehicle';
                             }
+                            if (strpos($value2, 'trade_any_bicycle') !== false) {
+                                $type = 'trade_any_bicycle';
+                            }
                             if (strpos($value2, 'trade_weapons') !== false) {
                                 $type = 'trade_weapons';
                             }
                             if (strpos($value2, 'trade_items') !== false) {
                                 $type = 'trade_items';
+                            }
+                            if (strpos($value2, 'trade_any_boat') !== false) {
+                                $type = 'trade_any_boat';
+                            }
+                            if (strpos($value2, 'trade_backpacks') !== false) {
+                                $type = 'trade_backpacks';
                             }
                             if (strpos($haystack, 'Rnd') !== false) {
                                 $type = 'trade_ammo';
@@ -1801,6 +1811,7 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
                             if (strpos($haystack, 'Soda') !== false) {
                                 $type = 'trade_drink';
                             }
+
                         }
                     }
                     $products[$haystack] = [
@@ -1822,17 +1833,23 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
 
             }
         }
-        /*
+
         foreach($products as $productkey => $product) {
             $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
             $dbproduct = $repository->findBy(['name' => $productkey]);
-
+            foreach($product as $key => $val) {
+                if(!is_array($product['buy'])) {
+                    dump($productkey );
+                }
+            }
             if(count($dbproduct) == 0) {
                 $productobject = new Product();
                 $productobject->setName($productkey);
                 $productobject->setCategory($product['type']);
+
                 $productobject->setBuyname($key = key($product['buy']));
                 $productobject->setBuyqty($product['buy'][$key]);
+
                 $productobject->setSellname($key = key($product['sell']));
                 $productobject->setSellqty($product['sell'][$key]);
 
@@ -1842,7 +1859,6 @@ class Skin_CDF_Soldier_DZ {type = \"trade_items\";buy[] = {2,\"ItemGoldBar\"};se
             }
 
         }
-        */
         dump($products);
         exit;
         $news = new News();
